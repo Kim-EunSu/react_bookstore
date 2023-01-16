@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import Banner from "./Banner";
 import logoImg from "../images/logo.png";
@@ -48,10 +48,9 @@ function Header() {
           <LogoImg />
           <h1>BookHuB</h1>
         </Logo>
-
         <Items>
           <Item>
-            <Link to="/Home">Home</Link>
+            <Link to="/">Home</Link>
           </Item>
           <Item>
             <Link to="/About">About</Link>

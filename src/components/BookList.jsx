@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
+import { useMatch } from "react-router-dom";
 import styled from "styled-components";
 
 const Header = styled.h3`
@@ -47,7 +47,9 @@ const BookImg = styled.img`
 const BookInfo = styled.div``;
 
 function BookList({ book }) {
-  console.log(book);
+  const BookMatch = useMatch("/:id");
+  console.log(BookMatch);
+
   return (
     <>
       <Header> YOUR SEARCH RESULT</Header>
