@@ -1,6 +1,7 @@
 import { eventNames } from "process";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
 import BookList from "./BookList";
 
 const Wrapper = styled.div`
@@ -41,21 +42,45 @@ const Loader = styled.p`
 
 function Banner() {
   // const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState([]);
-  const [book, setBook] = useState([]);
+  const [search, setSearch] = useState(""); // api의 data를 먼저 가져오고 난 후
+  const [bookData, setBookData] = useState([]);
+
+  const searchBook = (e) => {
+    if (e.key === "Enter") {
+      axios
+        .get(
+          "https://www.googleapis.com/books/v1/volumes?q=" +
+            search +
+            "&key=AIzaSyCM509Zx7dQE5Wlh-BnsLDauFCwKS51zp8" +
+            "&maxResults=40"
+        )
+        .then((res) => setBookData(res.data.items))
+        .catch((err) => console.log(err));
+      setSearch("");
+    }
+  };
 
   return (
-    <Wrapper>
-      <Wrap>
-        <Title>Find Your Book</Title>
-        <Desc>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae
-          sapiente quibusdam consequatur perspiciatis facere laboriosam non
-          nesciunt at id repudiandae, modi iste? Eligendi, rerum!
-        </Desc>
-        <Input type="text" placeholder="책 이름을 검색하세요." />
-      </Wrap>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <Wrap>
+          <Title>Find Your Book</Title>
+          <Desc>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae
+            sapiente quibusdam consequatur perspiciatis facere laboriosam non
+            nesciunt at id repudiandae, modi iste? Eligendi, rerum!
+          </Desc>
+          <Input
+            onKeyPress={searchBook}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            type="text"
+            placeholder="책 이름을 검색하세요."
+          />
+        </Wrap>
+      </Wrapper>
+      <BookList book={bookData}></BookList>
+    </>
   );
 }
 
