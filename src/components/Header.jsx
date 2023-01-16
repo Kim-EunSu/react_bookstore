@@ -7,9 +7,9 @@ import logoImg from "../images/logo.png";
 const Nav = styled.div`
   width: 100%;
   display: flex;
-  border: 5px solid red;
   padding: 1.5rem;
   justify-content: space-between;
+  font-weight: 700;
   h1 {
     font-size: 3rem;
   }

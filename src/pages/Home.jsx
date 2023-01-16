@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const Main = styled.div``;
 const Header = styled.div``;
-const Navbar = styled.div``;
 
 function Home() {
   return (

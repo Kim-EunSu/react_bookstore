@@ -1,16 +1,18 @@
-import { eventNames } from "process";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
+import BannerImage from "../images/library-img.jpg";
 
 const Wrapper = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  justify-content: center;
+  color: white;
   align-items: center;
-  border: 5px solid blue;
+  justify-content: center;
+  background: linear-gradient(rgba(141, 39, 174, 0.3), rgba(141, 39, 174, 0.5)),
+    url(${BannerImage}) center/cover no-repeat;
 `;
 
 const Wrap = styled.div`
@@ -23,6 +25,7 @@ const Wrap = styled.div`
 
 const Title = styled.h3`
   font-size: 4rem;
+  font-weight: 700;
 `;
 const Desc = styled.p`
   max-width: 680px;
@@ -34,14 +37,11 @@ const Input = styled.input`
   max-width: 55%;
   padding: 1.2rem 2.8rem;
   border-radius: 3.8rem;
-`;
-
-const Loader = styled.p`
-  color: red;
+  border: transparent;
 `;
 
 function Banner() {
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(""); // api의 data를 먼저 가져오고 난 후
   const [bookData, setBookData] = useState([]);
 
@@ -57,6 +57,7 @@ function Banner() {
         .then((res) => setBookData(res.data.items))
         .catch((err) => console.log(err));
       setSearch("");
+      setLoading(false);
     }
   };
 
@@ -64,7 +65,7 @@ function Banner() {
     <>
       <Wrapper>
         <Wrap>
-          <Title>Find Your Book</Title>
+          <Title>Find Your Book Of Choice.</Title>
           <Desc>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae
             sapiente quibusdam consequatur perspiciatis facere laboriosam non
@@ -75,11 +76,11 @@ function Banner() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             type="text"
-            placeholder="책 이름을 검색하세요."
+            placeholder="Search..."
           />
         </Wrap>
       </Wrapper>
-      <BookList book={bookData}></BookList>
+      {loading ? null : <BookList book={bookData}></BookList>}
     </>
   );
 }
