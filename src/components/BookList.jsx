@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useMatch } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
+import BookDetails from "./BookDetails";
 
 const Header = styled.h3`
   padding: 1.5rem 1.5rem 1rem;
@@ -47,8 +48,8 @@ const BookImg = styled.img`
 const BookInfo = styled.div``;
 
 function BookList({ book }) {
-  const BookMatch = useMatch("/:id");
-  console.log(BookMatch);
+  // const BookMatch = useMatch("/:bookId/bookdetail");
+  // console.log(BookMatch);
 
   return (
     <>
@@ -65,7 +66,10 @@ function BookList({ book }) {
                 <Wrapper>
                   <BookImg src={thumbmnail} />
                   <BookInfo>
-                    <p>{item.volumeInfo.title}</p>
+                    <Link to={`/book/${item.id}`}>
+                      <p>{item.volumeInfo.title}</p>
+                    </Link>
+
                     <p>
                       Author:{" "}
                       {item.volumeInfo.authors

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
 import BannerImage from "../images/library-img.jpg";
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;

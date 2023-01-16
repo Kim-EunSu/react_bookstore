@@ -41,12 +41,17 @@ const Item = styled.div`
 `;
 
 function Header() {
+  // const BookMathch = useMatch("/book/:id");
+  // console.log(BookMathch);
+
   return (
     <>
       <Nav>
         <Logo>
           <LogoImg />
-          <h1>BookHuB</h1>
+          <Link to="/">
+            <h1>BookHuB</h1>
+          </Link>
         </Logo>
         <Items>
           <Item>
