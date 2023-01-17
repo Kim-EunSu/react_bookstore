@@ -1,24 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import BookDetails from "./components/BookDetails";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import About from "./pages/About";
-import Home from "./pages/Home";
+import Home from "./routes/Home";
+import About from "./routes/About";
+import BookList from "./components/BookList";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="about" element={<About />} />
-        <Route path="/" element={<Home />}>
-          <Route path="/book/:id" element={<BookDetails />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/book" element={<Home />}>
+          <Route path="book/:id" element={<BookList />}></Route>
         </Route>
-        {/* <Route path="about" element={<About />} />
-        <Route path="/" element={<Home />}>
-          <Route path="/book/:id" element={<Home />} />
-        </Route> */}
+        <Route path="/about" element={<About />}></Route>
       </Routes>
     </BrowserRouter>
   );
 }
+
 export default App;

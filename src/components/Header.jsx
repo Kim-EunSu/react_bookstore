@@ -1,8 +1,8 @@
 import React from "react";
-import { Link, useMatch } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
-import Banner from "./Banner";
 import logoImg from "../images/logo.png";
+import Banner from "./Banner";
 
 const Nav = styled.div`
   width: 100%;
@@ -14,6 +14,7 @@ const Nav = styled.div`
     font-size: 3rem;
   }
 `;
+
 const Logo = styled.div`
   display: flex;
   flex-direction: row;
@@ -41,9 +42,6 @@ const Item = styled.div`
 `;
 
 function Header() {
-  // const BookMathch = useMatch("/book/:id");
-  // console.log(BookMathch);
-
   return (
     <>
       <Nav>
@@ -55,12 +53,13 @@ function Header() {
         </Logo>
         <Items>
           <Item>
-            <Link to="/">Home</Link>
+            <Link to="/book">Home</Link>
           </Item>
           <Item>
-            <Link to="/About">About</Link>
+            <Link to="/about">About</Link>
           </Item>
         </Items>
+        <Outlet />
       </Nav>
       <Banner />
     </>

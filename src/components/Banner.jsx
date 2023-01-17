@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
 import BannerImage from "../images/library-img.jpg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -41,10 +41,17 @@ const Input = styled.input`
   border: transparent;
 `;
 
+const Loader = styled.p`
+  font-size: 30px;
+  color: red;
+`;
+
 function Banner() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(""); // api의 data를 먼저 가져오고 난 후
   const [bookData, setBookData] = useState([]);
+
+  const navigate = useNavigate();
 
   const searchBook = (e) => {
     if (e.key === "Enter") {
@@ -59,8 +66,11 @@ function Banner() {
         .catch((err) => console.log(err));
       setSearch("");
       setLoading(false);
+      navigate("/book");
     }
   };
+
+  //   console.log(bookData);
 
   return (
     <>
@@ -81,7 +91,11 @@ function Banner() {
           />
         </Wrap>
       </Wrapper>
-      {loading ? null : <BookList book={bookData}></BookList>}
+      {loading ? (
+        <Loader>Loading....!!!</Loader>
+      ) : (
+        <BookList book={bookData}></BookList>
+      )}
     </>
   );
 }
