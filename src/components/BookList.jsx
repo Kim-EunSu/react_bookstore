@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useMatch } from "react-router-dom";
+import Book from "./Book";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -32,20 +32,18 @@ const BookInfo = styled.div`
 `;
 
 function BookList({ book }) {
-  const bookMatch = useMatch("/book");
-  console.log(bookMatch);
+  console.log(book); // 왜 undefined이지....
 
   return (
     <>
       <Wrapper>
         {book.map((item) => {
-          console.log(item);
           let thumbmnail =
             item.volumeInfo.imageLinks &&
             item.volumeInfo.imageLinks.smallThumbnail;
+
           return (
             <>
-              {/* <h1>YOUR SEARCH RESULT</h1> */}
               <BookWrapper>
                 <BookImage src={thumbmnail}></BookImage>
                 <BookInfo>

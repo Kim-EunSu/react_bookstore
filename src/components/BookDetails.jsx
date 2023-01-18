@@ -1,7 +1,7 @@
 import React from "react";
 
-function BookDeail() {
-  return <div>BookDeail</div>;
+function BookDetails() {
+  return <div>BookDetails</div>;
 }
 
-export default BookDeail;
+export default BookDetails;
