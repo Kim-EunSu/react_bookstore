@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useMatch } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -26,17 +27,19 @@ const BookImage = styled.div`
   object-fit: cover;
 `;
 
-const BookInfo = styled.p`
+const BookInfo = styled.div`
   text-align: center;
 `;
 
 function BookList({ book }) {
-  console.log(book);
+  const bookMatch = useMatch("/book");
+  console.log(bookMatch);
 
   return (
     <>
       <Wrapper>
         {book.map((item) => {
+          console.log(item);
           let thumbmnail =
             item.volumeInfo.imageLinks &&
             item.volumeInfo.imageLinks.smallThumbnail;

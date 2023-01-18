@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
@@ -41,13 +41,13 @@ const Input = styled.input`
   border: transparent;
 `;
 
-const Loader = styled.p`
+const Loader = styled.div`
   font-size: 30px;
   color: red;
 `;
 
 function Banner() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(""); // api의 data를 먼저 가져오고 난 후
   const [bookData, setBookData] = useState([]);
 
@@ -65,12 +65,12 @@ function Banner() {
         .then((res) => setBookData(res.data.items))
         .catch((err) => console.log(err));
       setSearch("");
-      setLoading(false);
+      // setLoading(false);
       navigate("/book");
     }
   };
 
-  //   console.log(bookData);
+  // console.log(bookData);
 
   return (
     <>
@@ -91,11 +91,7 @@ function Banner() {
           />
         </Wrap>
       </Wrapper>
-      {loading ? (
-        <Loader>Loading....!!!</Loader>
-      ) : (
-        <BookList book={bookData}></BookList>
-      )}
+      <BookList book={bookData}></BookList>
     </>
   );
 }
