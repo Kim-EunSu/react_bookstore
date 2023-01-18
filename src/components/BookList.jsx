@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Book from "./Book";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -32,28 +31,30 @@ const BookInfo = styled.div`
 `;
 
 function BookList({ book }) {
-  console.log(book); // 왜 undefined이지....
+  console.log(book);
 
   return (
     <>
       <Wrapper>
-        {book.map((item) => {
-          let thumbmnail =
-            item.volumeInfo.imageLinks &&
-            item.volumeInfo.imageLinks.smallThumbnail;
-
-          return (
-            <>
-              <BookWrapper>
-                <BookImage src={thumbmnail}></BookImage>
+        {book &&
+          book.map((item) => {
+            let thumbmnail =
+              item.volumeInfo.imageLinks &&
+              item.volumeInfo.imageLinks.smallThumbnail;
+            return (
+              <BookWrapper key={item.id}>
+                <BookImage src={thumbmnail} />
                 <BookInfo>
                   <p>{item.volumeInfo.title}</p>
-                  <p>{item.volumeInfo.authors}</p>
+                  <p>
+                    {item.volumeInfo.authors
+                      ? item.volumeInfo.authors
+                      : "Anonymous"}
+                  </p>
                 </BookInfo>
               </BookWrapper>
-            </>
-          );
-        })}
+            );
+          })}
       </Wrapper>
     </>
   );
