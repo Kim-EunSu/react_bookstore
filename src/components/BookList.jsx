@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import BookDetails from "./BookDetails";
-import { Link } from "react-router-dom";
 import noImage from "../images/cover_not_found.jpg";
 
 const Wrapper = styled.div`
@@ -31,6 +29,15 @@ const BookImage = styled.img`
 
 const BookInfo = styled.div`
   text-align: center;
+  p:first-child {
+    line-height: 1.4;
+    font-weight: 700;
+    margin-bottom: 7px;
+    font-size: 1.2rem;
+  }
+  p:last-child {
+    opacity: 0.8;
+  }
 `;
 
 function BookList({ book }) {
@@ -41,6 +48,7 @@ function BookList({ book }) {
       <Wrapper>
         {book &&
           book.map((item) => {
+            //image error 수정
             let thumbnail =
               item.volumeInfo.imageLinks === undefined
                 ? noImage
