@@ -97,7 +97,7 @@
 // }
 
 // export default Banner;
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
@@ -141,16 +141,18 @@ const Input = styled.input`
 `;
 
 const Loader = styled.div`
-  font-size: 30px;
   color: red;
+  font-size: 100px;
 `;
 
 function Banner() {
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState(""); // api의 data를 먼저 가져오고 난 후
   const [bookData, setBookData] = useState([]);
 
   const navigate = useNavigate();
+
+  //https://www.googleapis.com/books/v1/volumes?q=search+terms
 
   const searchBook = (e) => {
     if (e.key === "Enter") {
@@ -164,8 +166,8 @@ function Banner() {
         .then((res) => setBookData(res.data.items))
         .catch((err) => console.log(err));
       setSearch("");
-      // setLoading(false);
       navigate("/book");
+      setLoading(false);
     }
   };
 
@@ -188,7 +190,7 @@ function Banner() {
           />
         </Wrap>
       </Wrapper>
-      <BookList book={bookData} />
+      {loading ? null : <BookList book={bookData} />}
     </>
   );
 }

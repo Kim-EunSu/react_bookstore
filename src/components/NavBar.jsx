@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import styled from "styled-components";
 import logoImg from "../images/logo.png";
 
@@ -41,6 +41,9 @@ const Item = styled.div`
 `;
 
 function NavBar() {
+  const homeMatch = useMatch("/");
+  const aboutMatch = useMatch("/about");
+
   return (
     <>
       <Nav>
