@@ -44,6 +44,9 @@ function NavBar() {
   const homeMatch = useMatch("/");
   const aboutMatch = useMatch("/about");
 
+  console.log(homeMatch);
+  console.log(aboutMatch);
+
   return (
     <>
       <Nav>

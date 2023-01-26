@@ -1,27 +1,3 @@
-// import React from "react";
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import About from "./routes/About";
-// import BookList from "./components/BookList";
-// import BookDetails from "./components/BookDetails";
-// import Header from "./components/Header";
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         <Route path="/" element={<Header />}>
-//           <Route path="/book" element={<BookList />}>
-//             <Route path="book/:id" element={<BookDetails />} />
-//           </Route>
-//           <Route path="/about" element={<About />} />
-//         </Route>
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from "./routes/About";
@@ -35,9 +11,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />}>
-          <Route path="/book" element={<BookList />}>
-            <Route path="book/:id" element={<BookDetails />} />
-          </Route>
+          <Route path="/book" element={<BookList />}></Route>
+          <Route path="book/:id" element={<BookDetails />} />
+
           <Route path="/about" element={<About />} />
         </Route>
       </Routes>

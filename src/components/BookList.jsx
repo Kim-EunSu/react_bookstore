@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import noImage from "../images/cover_not_found.jpg";
+import BookDetails from "./BookDetails";
+import { useState } from "react";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -17,13 +20,17 @@ const BookWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
   background: #efefef;
+`;
+
+const BookWrap = styled.div`
+  padding: 1rem;
 `;
 
 const BookImage = styled.img`
   width: 100%;
   height: 200px;
+  margin-bottom: 0.5rem;
   object-fit: contain;
 `;
 
@@ -37,6 +44,7 @@ const BookInfo = styled.div`
   }
   p:last-child {
     opacity: 0.8;
+    font-weight: 400;
   }
 `;
 
@@ -57,15 +65,23 @@ function BookList({ book }) {
             return (
               <>
                 <BookWrapper key={item.id}>
-                  <BookImage src={thumbnail} />
-                  <BookInfo>
-                    <p>{item.volumeInfo.title}</p>
-                    <p>
-                      {item.volumeInfo.authors
-                        ? item.volumeInfo.authors
-                        : "Anonymous"}
-                    </p>
-                  </BookInfo>
+                  <BookWrap onClick={() => {}}>
+                    <Link
+                      to={`/book/${item.id}`}
+                      {...item}
+                      state={{ name: item.volumeInfo.title }}
+                    >
+                      <BookImage src={thumbnail} />
+                      <BookInfo>
+                        <p>{item.volumeInfo.title}</p>
+                        <p>
+                          {item.volumeInfo.authors
+                            ? item.volumeInfo.authors
+                            : "Anonymous"}
+                        </p>
+                      </BookInfo>
+                    </Link>
+                  </BookWrap>
                 </BookWrapper>
               </>
             );
