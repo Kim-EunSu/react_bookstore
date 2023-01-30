@@ -102,7 +102,7 @@ import styled from "styled-components";
 import axios from "axios";
 import BookList from "./BookList";
 import BannerImage from "../images/library-img.jpg";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useMatch } from "react-router-dom";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -152,8 +152,6 @@ function Banner() {
 
   const navigate = useNavigate();
 
-  //https://www.googleapis.com/books/v1/volumes?q=search+terms
-
   const searchBook = (e) => {
     if (e.key === "Enter") {
       axios
@@ -170,6 +168,8 @@ function Banner() {
       setLoading(false);
     }
   };
+
+  console.log(bookData);
 
   return (
     <>
@@ -190,7 +190,7 @@ function Banner() {
           />
         </Wrap>
       </Wrapper>
-      {loading ? null : <BookList book={bookData} />}
+      <BookList book={bookData} />
     </>
   );
 }

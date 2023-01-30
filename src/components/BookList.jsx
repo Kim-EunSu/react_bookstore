@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
+import { useMatch, Link } from "react-router-dom";
 import styled from "styled-components";
 import noImage from "../images/cover_not_found.jpg";
-import BookDetails from "./BookDetails";
 import { useState } from "react";
 
 const Wrapper = styled.div`
@@ -51,42 +50,47 @@ const BookInfo = styled.div`
 function BookList({ book }) {
   console.log(book);
 
+  const bookMatch = useMatch(`book`);
+  console.log(bookMatch);
+
   return (
     <>
-      <Wrapper>
-        {book &&
-          book.map((item) => {
-            //image error 수정
-            let thumbnail =
-              item.volumeInfo.imageLinks === undefined
-                ? noImage
-                : `${item.volumeInfo.imageLinks.thumbnail}`;
+      {bookMatch ? (
+        <Wrapper>
+          {book &&
+            book.map((item) => {
+              //image error 수정
+              let thumbnail =
+                item.volumeInfo.imageLinks === undefined
+                  ? noImage
+                  : `${item.volumeInfo.imageLinks.thumbnail}`;
 
-            return (
-              <>
-                <BookWrapper key={item.id}>
-                  <BookWrap onClick={() => {}}>
-                    <Link
-                      to={`/book/${item.id}`}
-                      {...item}
-                      state={{ name: item.volumeInfo.title }}
-                    >
-                      <BookImage src={thumbnail} />
-                      <BookInfo>
-                        <p>{item.volumeInfo.title}</p>
-                        <p>
-                          {item.volumeInfo.authors
-                            ? item.volumeInfo.authors
-                            : "Anonymous"}
-                        </p>
-                      </BookInfo>
-                    </Link>
-                  </BookWrap>
-                </BookWrapper>
-              </>
-            );
-          })}
-      </Wrapper>
+              return (
+                <>
+                  <BookWrapper key={item.id}>
+                    <BookWrap onClick={() => {}}>
+                      <Link
+                        to={`/book/${item.id}`}
+                        {...item}
+                        state={{ name: item.volumeInfo.title }}
+                      >
+                        <BookImage src={thumbnail} />
+                        <BookInfo>
+                          <p>{item.volumeInfo.title}</p>
+                          <p>
+                            {item.volumeInfo.authors
+                              ? item.volumeInfo.authors
+                              : "Anonymous"}
+                          </p>
+                        </BookInfo>
+                      </Link>
+                    </BookWrap>
+                  </BookWrapper>
+                </>
+              );
+            })}
+        </Wrapper>
+      ) : null}
     </>
   );
 }
