@@ -3,19 +3,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Button = styled.button`
-  /* position: absolute; */
-  top: 50px;
   border: none;
   font-size: 30px;
   color: #717171;
+  margin: 2rem 0;
   background: transparent;
-  margin-bottom: 2.6rem;
 `;
 
 const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2rem 2rem;
 `;
 
 const DetailContent = styled.div`
@@ -35,16 +33,26 @@ const Img = styled.img`
 
 const Info = styled.div`
   margin-left: 3rem;
-  font-weight: 700;
   p {
     font-weight: 400;
     margin: 1rem 0;
   }
 `;
 
-const Title = styled.h2``;
-const Author = styled.p``;
-const Desc = styled.p``;
+const Title = styled.h2`
+  font-weight: 700;
+  font-size: 2.5rem;
+`;
+
+const Author = styled.p`
+  font-size: 1.5rem;
+`;
+
+const Date = styled.p``;
+
+const Desc = styled.p`
+  line-height: 1.5;
+`;
 
 function BookDetail() {
   const { state } = useLocation();
@@ -70,6 +78,7 @@ function BookDetail() {
           <Info>
             <Title> {state.volumeInfo.title}</Title>
             <Author>Author: {state.author ? state.author : "Anonymous"}</Author>
+            <Date>publishedDate: {state.volumeInfo.publishedDate}</Date>
             <Desc>
               Description:{" "}
               {state.volumeInfo.description
