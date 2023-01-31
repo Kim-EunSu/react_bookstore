@@ -1,7 +1,6 @@
-import { useMatch, Link } from "react-router-dom";
+import { useMatch, Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import noImage from "../images/cover_not_found.jpg";
-import { useState } from "react";
 
 const Wrapper = styled.div`
   width: 80%;
@@ -53,6 +52,8 @@ function BookList({ book }) {
   const bookMatch = useMatch(`book`);
   console.log(bookMatch);
 
+  const navigate = useNavigate();
+
   return (
     <>
       {bookMatch ? (
@@ -68,12 +69,8 @@ function BookList({ book }) {
               return (
                 <>
                   <BookWrapper key={item.id}>
-                    <BookWrap onClick={() => {}}>
-                      <Link
-                        to={`/book/${item.id}`}
-                        {...item}
-                        state={{ name: item.volumeInfo.title }}
-                      >
+                    <BookWrap>
+                      <Link to={`/book/${item.id}`} state={{ ...item }}>
                         <BookImage src={thumbnail} />
                         <BookInfo>
                           <p>{item.volumeInfo.title}</p>

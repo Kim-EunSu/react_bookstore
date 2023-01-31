@@ -152,14 +152,18 @@ function Banner() {
 
   const navigate = useNavigate();
 
+  //description이 있는 api주소(40개 나옴)
+  // "https://www.googleapis.com/books/v1/volumes?q=" +
+  // search +
+  // "&orderBy=newest&maxResults=40&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU";
+
   const searchBook = (e) => {
     if (e.key === "Enter") {
       axios
         .get(
           "https://www.googleapis.com/books/v1/volumes?q=" +
             search +
-            "&key=AIzaSyCM509Zx7dQE5Wlh-BnsLDauFCwKS51zp8" +
-            "&maxResults=40"
+            "&orderBy=newest&maxResults=40&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU"
         )
         .then((res) => setBookData(res.data.items))
         .catch((err) => console.log(err));
