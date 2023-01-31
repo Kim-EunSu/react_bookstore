@@ -1,4 +1,4 @@
-import { useMatch, Link, useNavigate } from "react-router-dom";
+import { useMatch, Link } from "react-router-dom";
 import styled from "styled-components";
 import noImage from "../images/cover_not_found.jpg";
 
@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   font-family: "Poppins", sans-serif;
 `;
 
-const BookWrapper = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -52,8 +52,6 @@ function BookList({ book }) {
   const bookMatch = useMatch(`book`);
   console.log(bookMatch);
 
-  const navigate = useNavigate();
-
   return (
     <>
       {bookMatch ? (
@@ -68,7 +66,7 @@ function BookList({ book }) {
 
               return (
                 <>
-                  <BookWrapper key={item.id}>
+                  <Container key={item.id}>
                     <BookWrap>
                       <Link to={`/book/${item.id}`} state={{ ...item }}>
                         <BookImage src={thumbnail} />
@@ -82,7 +80,7 @@ function BookList({ book }) {
                         </BookInfo>
                       </Link>
                     </BookWrap>
-                  </BookWrapper>
+                  </Container>
                 </>
               );
             })}
