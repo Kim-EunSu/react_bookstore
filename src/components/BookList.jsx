@@ -1,6 +1,6 @@
 import { useMatch, Link } from "react-router-dom";
 import styled from "styled-components";
-import noImage from "../images/cover_not_found.jpg";
+import noImage from "../images/noImage.png";
 
 const Wrapper = styled.div`
   width: 80%;

@@ -80,7 +80,7 @@ function BookDetail() {
             <Author>Author: {state.author ? state.author : "Anonymous"}</Author>
             <Date>publishedDate: {state.volumeInfo.publishedDate}</Date>
             <Desc>
-              Description:{" "}
+              Description:
               {state.volumeInfo.description
                 ? state.volumeInfo.description
                 : "No Description"}
