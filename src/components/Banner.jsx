@@ -84,7 +84,7 @@ function Banner() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             type="text"
-            placeholder="Search..."
+            placeholder="Search the Book Name..."
           />
         </Wrap>
       </Wrapper>
