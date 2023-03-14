@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import AboutImg from "../images/about-img.jpg";
-import Banner from "../components/Banner";
 import { useMatch } from "react-router-dom";
 
 const Wrapper = styled.div`
